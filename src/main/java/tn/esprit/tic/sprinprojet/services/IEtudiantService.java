@@ -4,8 +4,7 @@ import tn.esprit.tic.sprinprojet.Entity.Etudiant;
 
 import java.util.List;
 
-public interface IEtudiantService {
-
+public interface Ietudiantservice {
     List<Etudiant> retrieveAllEtudiants();
 
     Etudiant addEtudiant(Etudiant e);
@@ -15,4 +14,6 @@ public interface IEtudiantService {
     Etudiant retrieveEtudiant(Long idEtudiant);
 
     void removeEtudiant(Long idEtudiant);
+    List<Etudiant> addEtudiants (List<Etudiant> etudiants);
+    Etudiant affecterEtudiantAReservation(String nomEt , String prenomEt , String idReservation );
 }

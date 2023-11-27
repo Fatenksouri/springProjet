@@ -1,31 +1,32 @@
 package tn.esprit.tic.sprinprojet.Entity;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@Getter
+@Setter
 @Table( name = "Chambre")
-public class Chambre implements Serializable {
+public class Chambre implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idChambre")
-     Long idChambre;
-     Long numerochambre;
-    @Enumerated(EnumType.STRING)
-    Typec typechambre;
-    @ManyToOne
-    Bloc bloc;
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column(name="idchambre")
+    private Long idchambre;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="chambre")
-    Set<Reservation> Reservations;
+    private Long numeroChambre;
+    @Enumerated(EnumType.STRING)
+    private TypeChambre typec;
+    @JsonIgnore
+    @ManyToOne
+    private Bloc bloc;
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private Set<Reservation> reservations;
 
 }

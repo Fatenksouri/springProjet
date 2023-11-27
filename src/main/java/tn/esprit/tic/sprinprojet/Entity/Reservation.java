@@ -1,40 +1,29 @@
 package tn.esprit.tic.sprinprojet.Entity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 
-import java.util.Set;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
+
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@Getter
+@Setter
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table( name = "Reservation")
-
-
-public class Reservation implements Serializable {
-
+public class Reservation implements Serializable{
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column(name="idReservation")
-    Long idReservation;
+    @Column(name="idreservation")
+    private String idreservation;
+    private Boolean estvalide;
     @Temporal(TemporalType.DATE)
-    Date anneUniversitaire;
-    Boolean estvalide ;
-    @ManyToMany(cascade = CascadeType.ALL)
-    Set<Etudiant> etudiants;
-    @ManyToOne
-    Chambre chambre;
-
-
-
-
-
-
-
-
-
+    private Date anneeuniversitaire;
+    @ManyToMany(mappedBy="reservations",cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private Set<Etudiant> etudiants;
 }

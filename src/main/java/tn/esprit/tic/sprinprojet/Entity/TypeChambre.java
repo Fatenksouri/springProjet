@@ -1,7 +1,7 @@
 package tn.esprit.tic.sprinprojet.Entity;
 
-public enum Typec {
+public enum TypeChambre {
     SIMPLE,
-    Double,
-    TRIPLE;
+    DOUBLE,
+    TRIPLE,
 }
